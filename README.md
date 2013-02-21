@@ -18,7 +18,7 @@ var router = new Lennon({
 </pre>
 
 ## Defining routes
-- With callbacks
+#### With callbacks
 <pre>
 router.define('/', function(context) {
     //-- Do stuff
@@ -35,7 +35,7 @@ router.define('/some/:path', function(context) {
 });
 </pre>
 
-- With pubsub
+#### With pubsub
 <pre>
 router.define('/', 'defaultPathEventName');
 router.define('/some/:path', 'someOtherPathEventName');
