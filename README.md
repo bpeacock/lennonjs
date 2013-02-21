@@ -52,6 +52,13 @@ somePubSubLibrary.subscribe('someOtherPathEventName', function(context) {
 });
 </pre>
 
+## Processing a route
+<pre>
+router.process();
+</pre>
+
+That's it.  The process method will attach behavior to
+
 # Notes
 - index.html does not run properly unless setup as a site not served from the ***file:*** protocol.  It just serves as a demo that dynamically adds routes that you can click on and watch console logging.
 
