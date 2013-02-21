@@ -1,4 +1,4 @@
-# Lennon | A Javascript Router
+# Lennon, A Javascript Router
 
 ## Dependencies
 Modernizr, jQuery 1.8.6+
@@ -53,3 +53,10 @@ somePubSubLibrary.subscribe('someOtherPathEventName', function(context) {
     */
 });
 </pre>
+
+# Notes
+- index.html does not run properly unless setup as a site not served from the ***file:*** protocol.  It just serves as a demo that dynamically adds routes that you can click on and watch console logging.
+
+# Future stuff
+- Make logging conditional.  Currently, the custom logger I am passing to it has a debug switch.
+- Default the historyEnabled property to standalone feature sniffing which removes the dependency on Modernizr.
