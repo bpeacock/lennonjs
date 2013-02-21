@@ -23,8 +23,7 @@ var router = new Lennon({
 router.define('/', function(context) {
     //-- Do stuff
 });
-</pre>
-<pre>
+
 router.define('/some/:path', function(context) {
     /*
     This will match "/some/param" and context will be
@@ -39,8 +38,7 @@ router.define('/some/:path', function(context) {
 <pre>
 router.define('/', 'defaultPathEventName');
 router.define('/some/:path', 'someOtherPathEventName');
-</pre>
-<pre>
+
 somePubSubLibrary.subscribe('defaultPathEventName', function(context) {
     //-- Do stuff
 });
