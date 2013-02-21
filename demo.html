@@ -1,132 +1,31 @@
 <!DOCTYPE html>
-<html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+     <meta charset="utf-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+     <title>Lennon | A Javascript Router</title>
+     <meta name="viewport" content="width=device-width">
+     <link rel="stylesheet" href="css/normalize.css">
+     <link rel="stylesheet" href="css/main.css">
+     <script src="javascripts/vendor/modernizr-2.6.2.min.js"></script>
+</head>
+<body>
+     <div>
+          <form>
+               <h2>Add Routes</h2>
+               <input name="path" value="" placeholder="Enter a route" />
+               <input type="submit" value="Add Route" />
+          </form>
+          <ul class="routes">
+          </ul>
+     </div>
 
-  <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Lennon.js : Lennon, a Javascript router" />
-
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>Lennon.js</title>
-  </head>
-
-  <body>
-
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/gabehayes/lennonjs">View on GitHub</a>
-
-          <h1 id="project_title">Lennon.js</h1>
-          <h2 id="project_tagline">Lennon, a Javascript router</h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/gabehayes/lennonjs/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/gabehayes/lennonjs/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h1>Lennon, A Javascript Router</h1>
-
-<h2>Dependencies</h2>
-
-<p>Modernizr, jQuery 1.8.6+</p>
-
-<h2>Constructor Options</h2>
-
-<ul>
-<li>
-<strong>historyEnabled</strong>: By default, uses the Modernizr.history property.  When true, Lennon uses the history pushState method when routing.  When false, Lennon will gracefully fallback to using the location hash instead.</li>
-<li>
-<strong>linkSelector</strong>: A jQuery selector that is used to determine which links will cause the router to process when clicked.  By default, it is append on internal links only, <code>'a[target!=_blank]:not([href^=http])'</code>.  Of course, this will not apply to internal links that use a FQDN (<a href="http://somehost.com">http://somehost.com</a>).</li>
-<li>
-<strong>logger</strong>: An object that must consist of each of the following methods at the minimum: <code>error(params, …)</code>, <code>info(params, …)</code> and <code>warn(params, …)</code>.  By default, window.console is used.</li>
-<li>
-<strong>publishEvent</strong>: If you pass a string to Lennon's define method, you must also provide a publish method that accepts a String as the first argument and an Object as the second argument.  Lennon will eventually call <code>publishEvent(eventName, context)</code> when a route is matched.</li>
-</ul><h2>Creating the Lennon object</h2>
-
-<pre>
-var router = new Lennon({
-    logger: myCustomLogger,
-    publishEvent: somePubSubLibrary.publish
-});
-</pre>
-
-<h2>Defining routes</h2>
-
-<h4>With callbacks</h4>
-
-<pre>
-router.define('/', function(context) {
-    //-- Do stuff
-});
-
-router.define('/some/:path', function(context) {
-    /*
-    This will match "/some/param" and context will be
-    {Object} =&gt; {
-        path: "param"
-    }
-    */
-});
-</pre>
-
-<h4>With pubsub</h4>
-
-<pre>
-router.define('/', 'defaultPathEventName');
-router.define('/some/:path', 'someOtherPathEventName');
-
-somePubSubLibrary.subscribe('defaultPathEventName', function(context) {
-    //-- Do stuff
-});
-somePubSubLibrary.subscribe('someOtherPathEventName', function(context) {
-    /*
-    This will match "/some/param" and context will be
-    {Object} =&gt; {
-        path: "param"
-    }
-    */
-});
-</pre>
-
-<h1>Notes</h1>
-
-<ul>
-<li>index.html does not run properly unless setup as a site not served from the <strong><em>file:</em></strong> protocol.  It just serves as a demo that dynamically adds routes that you can click on and watch console logging.</li>
-</ul><h1>Future stuff</h1>
-
-<ul>
-<li>Make logging conditional.  Currently, the custom logger I am passing to it has a debug switch.</li>
-<li>Default the historyEnabled property to standalone feature sniffing which removes the dependency on Modernizr.</li>
-</ul>
-      </section>
-    </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Lennon.js maintained by <a href="https://github.com/gabehayes">gabehayes</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
-              <script type="text/javascript">
-            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-          </script>
-          <script type="text/javascript">
-            try {
-              var pageTracker = _gat._getTracker("UA-38673453-1");
-            pageTracker._trackPageview();
-            } catch(err) {}
-          </script>
-
-
-  </body>
+     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+     <script>window.jQuery || document.write('<script src="javascripts/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+     <script src="javascripts/vendor/lennon.js"></script>
+     <script src="javascripts/main.js"></script>
+</body>
 </html>
