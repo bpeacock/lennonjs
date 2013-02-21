@@ -85,6 +85,7 @@ Just a simple demo page to dynamically add routes and see how pushState or onhas
 - Make logging conditional.  Currently, the custom logger I am passing to it has a debug switch.
 - Default the historyEnabled property to standalone feature sniffing which removes the dependency on Modernizr.
 
+<pre>
 NNNNNNNNNDNNNNNNNNNNNNNDD+DDD?++=================D8===++============$7?8DDDDDDDDNDNDNNDNDDDNNNDDDNDD
 NNNNNNNNNDNN7NNNNNNNNDN?$DO+Z===================O8===================$?++DDDDDDDDDDDNNNDDDDDNDDDNNDN
 NNNNNNNDO$INNNNNNNNNNNDD+====+DO================?=====================8DDDDDDDDDNDDDNDDDNDNDDNDDDDDN
@@ -171,3 +172,4 @@ D?====================888D8+=========~===~==~==~~=====~~=~=~~~===$O88888D8888DD8
 II???II.I????????????+??++++?++++?$$8NDDDDDDNDDDDDDDDDDDDDDDDDDDDD8DDDDDD8DDDDDDDDDDDDDDDD88D8D8DDDD
 NDDNDDDO.ODDDDDD8DDDDDDD88DDDD8DD88888O888OOOOOOOZOZZZZZZ$ZZZZZ$$$$$$Z$$Z$$$$77$$$77$$$77$7$$$I??I77
                                                                                      GlassGiant.com
+</pre>
