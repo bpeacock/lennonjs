@@ -42,7 +42,7 @@
 
                     $(document).on('click', options.linkSelector, function() {
                         var $this = $(this),
-                            href;
+                            href = $this.attr('href');
 
                         //-- Use pushstate on anchor clicks
                         if ( options.historyEnabled ) {
@@ -52,7 +52,6 @@
 
                         //-- Hashify internal links if history is not available
                         } else {
-                            href = $this.attr('href');
                             if ( !$this.data('lennonized') ) {
                                 $this.attr('href', '/#' + href).data('lennonized', true);
                             }
