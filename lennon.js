@@ -32,38 +32,32 @@
 
             routes = [],
 
-            updateLinks = function(router) {
+            initialize = function(router) {
 
-                var $internal_links = $(options.linkSelector),
-                    processRoute = function() {
+                var processRoute = function() {
                         router.process();
                     };
 
-                //-- Use pushstate on anchor clicks
-                if ( options.historyEnabled ) {
-                    $internal_links.each(function() {
-                        var $this = $(this);
-                        if ( !$this.data('lennonized') ) {
-                            $this.on('click', function() {
-                                window.history.pushState(null, null, $(this).attr('href'));
-                                processRoute();
-                                return false;
-                            }).data('lennonized', true);
-                        }
-                    });
-
-                //-- Hashify internal links if history is not available
-                } else {
-                    $internal_links.each(function() {
-                        var $this = $(this),
-                            href = $this.attr('href');
-                        if ( !$this.data('lennonized') ) {
-                            $this.attr('href', '/#' + href).data('lennonized', true);
-                        }
-                    });
-                }
-
                 if ( !initialized ) {
+
+                    //-- Use pushstate on anchor clicks
+                    $(document).on('click', options.linkSelector, function() {
+                        var $this = $(this),
+                            href;
+                        if ( options.historyEnabled ) {
+                            window.history.pushState(null, null, $(this).attr('href'));
+                            processRoute();
+                            return false;
+
+                        //-- Hashify internal links if history is not available
+                        } else {
+                            href = $this.attr('href');
+                            if ( !$this.data('lennonized') ) {
+                                $this.attr('href', '/#' + href).data('lennonized', true);
+                            }
+                        }
+                    });
+
                     $(window).on(options.historyEnabled? 'popstate' : 'hashchange', processRoute);
                     initialized = true;
                 }
@@ -93,8 +87,8 @@
                     options.logger.info('Adding route', pathName, route);
                     routes.push(route);
 
-                    //-- Update the links
-                    updateLinks(this);
+                    //-- Make sure we have initialized
+                    initialize(this);
                 },
 
                 dispatch: function(route, context) {
