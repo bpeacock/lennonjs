@@ -40,12 +40,13 @@
 
                 if ( !initialized ) {
 
-                    //-- Use pushstate on anchor clicks
                     $(document).on('click', options.linkSelector, function() {
                         var $this = $(this),
                             href;
+
+                        //-- Use pushstate on anchor clicks
                         if ( options.historyEnabled ) {
-                            window.history.pushState(null, null, $(this).attr('href'));
+                            window.history.pushState(null, null, href);
                             processRoute();
                             return false;
 
