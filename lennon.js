@@ -12,7 +12,8 @@
 
     return window.Lennon = function(opts) {
 
-        var initialized = false,
+        var current_route,
+            initialized = false,
 
             options = $.extend({
 
@@ -67,12 +68,13 @@
         return (function() {
 
             return {
-                define: function(pathName, eventName) {
+                define: function(pathName, eventName, exitEventName) {
 
                     var occurence = pathName.match(/:/g) || [],
                         pattern = new RegExp('^' + pathName.replace(/\//g, "\\/").replace(/:(\w*)/g,"(\\w*)") + '$'),
                         route = {
                             eventName: eventName,
+                            exitEventName: exitEventName,
                             paramCount: occurence.length,
                             path: pathName,
                             pattern: pattern
@@ -133,6 +135,33 @@
                             for ( j = 1; j <= routes[i].paramCount; j++ ) {
                                 context[paramKeys[j - 1].replace(/:/g, '')] = params[j];
                             }
+
+                            if ( current_route ) {
+
+                                //-- Don't dispatch the route we are already on
+                                if ( current_route.path === routes[i].path ) {
+                                    return false;
+                                }
+
+                                //-- Dispatch the exit event for the route we are leaving
+                                if (  current_route.exitEventName ) {
+
+                                    options.logger.info('Exiting', current_route.path, 'with', context || {});
+
+                                    //-- Execute the callback
+                                    if ( 'function' === typeof current_route.exitEventName ) {
+                                        current_route.exitEventName(context || {});
+                                    //-- Run the publish event
+                                    } else {
+                                        options.publishEvent(current_route.exitEventName, context || {});
+                                    }
+                                }
+                            }
+
+                            //-- Update the current route
+                            current_route = routes[i];
+
+                            //-- Dispatch
                             return this.dispatch(routes[i], context);
                         }
 
@@ -146,6 +175,6 @@
     };
 }(this, jQuery, Modernizr));
 
-if ( typeof define === "function" ) {
+if ( typeof define === "function" && define.amd ) {
     define( "Lennon", [], function () { return Lennon; } );
 }
