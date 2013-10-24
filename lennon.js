@@ -6,7 +6,7 @@
  * @author Gabe Hayes <gabriel.hayes@gmail.com>
  * @copyright 2013, Gabe Hayes
  */
-(function(window, $, Modernizr, undefined) {
+(function(window, $, undefined) {
 
     'use strict';
 
@@ -18,7 +18,7 @@
             options = $.extend({
 
                 //-- determines whether or not the history api is enabled
-                historyEnabled: Modernizr.history,
+                historyEnabled: window.history && window.history.pushState,
 
                 //-- a jQuery selector for links that will have routing behavior applied to them
                 linkSelector: 'a[target!=_blank]:not([href^=http])',
@@ -177,7 +177,7 @@
             };
         }());
     };
-}(this, jQuery, Modernizr));
+}(this, jQuery));
 
 if ( typeof define === "function" && define.amd ) {
     define( "Lennon", [], function () { return Lennon; } );
