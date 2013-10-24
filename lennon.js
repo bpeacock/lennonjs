@@ -18,7 +18,7 @@
             options = $.extend({
 
                 //-- determines whether or not the history api is enabled
-                historyEnabled: window.history && window.history.pushState,
+                historyEnabled: !!(window.history && window.history.pushState),
 
                 //-- a jQuery selector for links that will have routing behavior applied to them
                 linkSelector: 'a[target!=_blank]:not([href^=http])',
